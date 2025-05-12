@@ -54,18 +54,21 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 RUN wget -nv -O /tmp/jetty.tar.gz \
     "https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/${JETTY_VERSION}/jetty-home-${JETTY_VERSION}.tar.gz" \
     && tar xzf /tmp/jetty.tar.gz -C /opt \
-    && mv /opt/jetty* /opt/jetty \
-    && useradd jetty -U -s /bin/false \
+    && mv /opt/jetty-home-${JETTY_VERSION} /opt/jetty \
+    && id -u jetty &>/dev/null || useradd jetty -U -s /bin/false \
     && chown -R jetty:jetty /opt/jetty \
-    && mkdir /opt/jetty/webapps \
+    && mkdir -p /opt/jetty/webapps \
     && chmod +x /opt/jetty/bin/jetty.sh
+
+
 
 EXPOSE 8080
 
 # Install app
-RUN mkdir /app && \
+RUN mkdir -p /app && \
     cd /app && \
     java -jar /opt/jetty/start.jar --add-modules=server,http,webapp,deploy
+
 
 ADD docs.xml /app/webapps/docs.xml
 ADD docs-web/target/docs-web-*.war /app/webapps/docs.war
