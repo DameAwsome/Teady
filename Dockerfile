@@ -51,16 +51,16 @@ RUN apt-get update && \
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Install Jetty
-RUN wget -nv -O /tmp/jetty.tar.gz \
-    "https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/${JETTY_VERSION}/jetty-home-${JETTY_VERSION}.tar.gz" \
-    && tar xzf /tmp/jetty.tar.gz -C /opt \
-    && mv /opt/jetty* /opt/jetty \
-    && useradd jetty -U -s /bin/false \
-    && chown -R jetty:jetty /opt/jetty \
-    && mkdir /opt/jetty/webapps \
-    && chmod +x /opt/jetty/bin/jetty.sh
+# RUN wget -nv -O /tmp/jetty.tar.gz \
+#     "https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/${JETTY_VERSION}/jetty-home-${JETTY_VERSION}.tar.gz" \
+#     && tar xzf /tmp/jetty.tar.gz -C /opt \
+#     && mv /opt/jetty* /opt/jetty \
+#     && useradd jetty -U -s /bin/false \
+#     && chown -R jetty:jetty /opt/jetty \
+#     && mkdir /opt/jetty/webapps \
+#     && chmod +x /opt/jetty/bin/jetty.sh
 
-EXPOSE 8080
+# EXPOSE 8080
 
 # Install app
 RUN mkdir /app && \
