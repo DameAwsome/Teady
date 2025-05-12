@@ -51,6 +51,10 @@ RUN apt-get update && \
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Install Jetty
+# 设置 Jetty 版本为构建参数
+ARG JETTY_VERSION=11.0.20
+
+# 安装 Jetty
 RUN wget -nv -O /tmp/jetty.tar.gz \
     "https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/${JETTY_VERSION}/jetty-home-${JETTY_VERSION}.tar.gz" \
     && tar xzf /tmp/jetty.tar.gz -C /opt \
@@ -59,6 +63,8 @@ RUN wget -nv -O /tmp/jetty.tar.gz \
     && chown -R jetty:jetty /opt/jetty \
     && mkdir -p /opt/jetty/webapps \
     && chmod +x /opt/jetty/bin/jetty.sh
+
+
 
 
 
