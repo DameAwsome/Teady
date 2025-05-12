@@ -1,6 +1,7 @@
  pipeline { 
     agent any
-
+    ARG JETTY_VERSION=11.0.20
+    ENV JETTY_VERSION=${JETTY_VERSION}
     environment { 
         // define environment variable
         // Jenkins credentials configuration
