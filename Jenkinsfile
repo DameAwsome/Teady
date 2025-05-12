@@ -1,6 +1,8 @@
  pipeline { 
     agent any
-
+    tools {
+    maven '3.9'
+}
     environment { 
         // define environment variable
         // Jenkins credentials configuration
