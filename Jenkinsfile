@@ -6,10 +6,10 @@
     environment { 
         // define environment variable
         // Jenkins credentials configuration
-        DOCKER_HUB_CREDENTIALS = credentials('1') // Docker Hub credentials ID store in Jenkins
+        DOCKER_HUB_CREDENTIALS = credentials('my-dockerhub-id') // Docker Hub credentials ID store in Jenkins
         // Docker Hub Repository's name
-        DOCKER_IMAGE = 'wenyunxiang/teedy' // your Docker Hub user name and Repository's name
-        DOCKER_TAG = "${env.BUILD_NUMBER}" // use build number as tag 
+        DOCKER_IMAGE = 'ubuntu' // your Docker Hub user name and Repository's name
+        DOCKER_TAG = "22.04" // use build number as tag 
     } 
     stages { 
         stage('Build') { 
