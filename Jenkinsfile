@@ -10,6 +10,7 @@
         // Docker Hub Repository's name
         DOCKER_IMAGE = 'ubuntu' // your Docker Hub user name and Repository's name
         DOCKER_TAG = "22.04" // use build number as tag 
+        DOCKER_PATH = '/usr/local/bin/docker'
     } 
     stages { 
         stage('Build') { 
