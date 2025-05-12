@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven '3.9'
+    }
     environment {
       JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
       PATH      = "${env.JAVA_HOME}/bin:/usr/share/maven/bin:${env.PATH}"
