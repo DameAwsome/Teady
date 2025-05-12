@@ -1,5 +1,8 @@
 pipeline {
 agent any
+tools {
+    maven 'Maven 3.9'  // 名字要和你上面填的一致
+}
 stages {
 stage('Clean') {
 steps {
