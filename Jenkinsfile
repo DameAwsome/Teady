@@ -4,8 +4,8 @@ pipeline {
         maven '3.9'
     }
     environment {
-      JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64'
-      PATH      = "${env.JAVA_HOME}/bin:/usr/share/maven/bin:${env.PATH}"
+      JAVA_HOME = '/Users/mac/Library/Java/JavaVirtualMachines/corretto-19.0.2/Contents/Home'
+      PATH      = "$JAVA_HOME/bin:$PATH"
     }
 
     stages {
