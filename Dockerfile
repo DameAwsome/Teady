@@ -48,7 +48,7 @@ RUN apt-get update && \
     tesseract-ocr-sqi \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN dpkg-reconfigure -f noninteractive tzdata
+#RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Install Jetty
 # RUN wget -nv -O /tmp/jetty.tar.gz \
