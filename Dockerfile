@@ -48,19 +48,23 @@ RUN apt-get update && \
     tesseract-ocr-sqi \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-#RUN dpkg-reconfigure -f noninteractive tzdata
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Install Jetty
-# RUN wget -nv -O /tmp/jetty.tar.gz \
-#     "https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/${JETTY_VERSION}/jetty-home-${JETTY_VERSION}.tar.gz" \
-#     && tar xzf /tmp/jetty.tar.gz -C /opt \
-#     && mv /opt/jetty* /opt/jetty \
-#     && useradd jetty -U -s /bin/false \
-#     && chown -R jetty:jetty /opt/jetty \
-#     && mkdir /opt/jetty/webapps \
-#     && chmod +x /opt/jetty/bin/jetty.sh
+# 设置 Jetty 版本为构建参数
+ARG JETTY_VERSION=11.0.20
 
-# EXPOSE 8080
+# 安装 Jetty
+RUN wget -nv -O /tmp/jetty.tar.gz \
+    "https://repo1.maven.org/maven2/org/eclipse/jetty/jetty-home/${JETTY_VERSION}/jetty-home-${JETTY_VERSION}.tar.gz" \
+ && tar xzf /tmp/jetty.tar.gz -C /opt \
+ && mv /opt/jetty-home-${JETTY_VERSION} /opt/jetty \
+ && useradd jetty -U -s /bin/false \
+ && chown -R jetty:jetty /opt/jetty \
+ && mkdir -p /opt/jetty/webapps \
+ && chmod +x /opt/jetty/bin/jetty.sh
+
+EXPOSE 8080
 
 # Install app
 RUN mkdir /app && \
